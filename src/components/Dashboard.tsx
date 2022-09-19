@@ -7,7 +7,6 @@ import leanpitchImg from "./asserts/leanpitch.jpg";
 import WhyWeMatter from "./dashboard_comps/WhyWeMatter";
 import CommonComp from "./dashboard_comps/CommonComp";
 import OurMeetUp from "./dashboard_comps/OurMeetUp";
-import { Conference } from "./dashboard_comps/DummyData";
 
 const Dashboard = () => {
     const styles = useStyles();
@@ -25,46 +24,56 @@ const Dashboard = () => {
                         {userSelect === 1 && <OurMeetUp comp={"meetups"} from={"nav"} />}
                         {userSelect === 2 && <OurMeetUp comp={"webinars"} from={"nav"} />}
                         {userSelect === 3 && (
-                            <Typography variant="h5" className={styles.conference}>
-                                {Conference}
-                            </Typography>
+                            <OurMeetUp comp={"conference"} from={"nav"} />
                         )}
                         {userSelect === 4 && <CommonComp type="videos" from={"nav"} />}
+                        {userSelect === 5 && <CommonComp type="pmspeaks" from={"nav"} />}
                         {userSelect === 6 && <CommonComp type="blogs" from={"nav"} />}
                     </Box>
                 </Box>
             </Stack>
             <WhyWeMatter />
-            <Box className={styles.trainings}>
+            <Box className={styles.commonComp}>
                 <Typography variant="h3" className={styles.textComp}>
                     Our Trainings
                 </Typography>
                 <CommonComp type="trainings" />
             </Box>
-            <Box className={styles.meetups}>
+            <Box className={styles.commonComp2}>
                 <Typography variant="h3" className={styles.textComp}>
                     Our MeetUps
                 </Typography>
                 <OurMeetUp comp={"meetups"} />
             </Box>
-            <Box className={styles.meetups}>
+            <Box className={styles.commonComp2}>
                 <Typography variant="h3" className={styles.textComp}>
                     Our Webinars
                 </Typography>
                 <OurMeetUp comp={"webinars"} />
             </Box>
-
-            <Box className={styles.trainings}>
+            <Box className={styles.commonComp2} sx={{ background: "#000",marginBottom:"4rem" }}>
+                <Typography variant="h3" className={styles.textComp} color="#fff" mb={2}>
+                    Our Conference
+                </Typography>
+                <OurMeetUp comp={"conference"} />
+            </Box>
+            <Box className={styles.commonComp}>
                 <Typography variant="h3" className={styles.textComp}>
                     Videos
                 </Typography>
                 <CommonComp type="videos" />
             </Box>
-            <Box className={styles.trainings}>
+            <Box className={styles.commonComp}>
                 <Typography variant="h3" className={styles.textComp}>
                     Blogs
                 </Typography>
                 <CommonComp type="blogs" />
+            </Box>
+            <Box className={styles.commonComp}>
+                <Typography variant="h3" className={styles.textComp}>
+                    PM Speak Series
+                </Typography>
+                <CommonComp type="pmspeaks" />
             </Box>
         </Box>
     );
@@ -98,7 +107,7 @@ const useStyles = makeStyles({
         width: "96%",
         height: "90%",
     },
-    trainings: {
+    commonComp: {
         width: "100%",
         background: "#fff",
         display: "flex",
@@ -106,7 +115,7 @@ const useStyles = makeStyles({
         alignItems: "center",
         paddingBlock: "2rem",
     },
-    meetups: {
+    commonComp2: {
         width: "100%",
         background: "#fff",
         height: "fit-content",
@@ -115,22 +124,10 @@ const useStyles = makeStyles({
         alignItems: "center",
         paddingBlock: "2rem",
     },
-    conference: {
-        color: "#fff",
-        height: "100%",
-        textAlign: "center",
-        lineHeight: "3rem !important",
-        letterSpacing: "0.09rem !important",
-        fontWeight: "bold",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-    },
     textComp: {
         fontWeight: "bold !important",
         textAlign: "center",
-        marginBlock: "2rem !important",
+        marginBlock: "3rem !important",
     },
 });
 

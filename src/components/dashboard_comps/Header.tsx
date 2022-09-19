@@ -2,11 +2,9 @@ import React from "react";
 import { Box, Stack, Typography } from "@mui/material";
 import { makeStyles } from "@mui/styles";
 import Logo from "../asserts/logoleanpitch.webp";
-import { useNavigate } from "react-router-dom";
 
 const Header = () => {
     const styles = useStyles();
-    // const navigate = useNavigate();
     return (
         <Box className={styles.outerBox}>
             <Box className={styles.logo} >
@@ -27,7 +25,7 @@ const useStyles = makeStyles({
         height: "10vh",
         display: "flex",
         justifyContent: "space-between",
-        // position: "absolute",
+        position: "sticky",
         top: "0",
         right: "0",
         left: "0",
@@ -35,6 +33,7 @@ const useStyles = makeStyles({
         background: "#272626",
     },
     logo: {
+        cursor: "pointer",
         display: "flex",
         alignItems: "center",
         width: "fit-content",

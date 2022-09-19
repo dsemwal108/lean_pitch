@@ -4,6 +4,7 @@ import { makeStyles } from "@mui/styles";
 import TrainingData from "./DummyData";
 import { Videos } from "./DummyData";
 import { Blogs } from "./DummyData";
+import { PmSpeaks } from "./DummyData";
 
 interface IProps {
     type: string;
@@ -22,6 +23,8 @@ const CommonComp: React.FC<IProps> = (props) => {
             setData(Videos);
         } else if (type === "blogs") {
             setData(Blogs);
+        } else if (type === "pmspeaks") {
+            setData(PmSpeaks);
         }
     }, [type]);
 
@@ -37,7 +40,7 @@ const CommonComp: React.FC<IProps> = (props) => {
     const VideosCard = (ele: any, index: number) => {
         return (
             <Box marginLeft="2rem" key={index}>
-                <iframe width="320" height="190" src={ele.link} title={ele.title} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                <iframe width="320" height="190" loading="eager" src={ele.link} title={ele.title} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
             </Box>
         );
     };
@@ -66,14 +69,20 @@ const CommonComp: React.FC<IProps> = (props) => {
     const BlogCard = (ele: any, index: number) => {
         return (
             <Box key={index} className={styles.blogCard} sx={{ backgroundImage: `url(${ele.image})` }}>
-                <Box className={styles.textContain}>
-                    <Typography className={styles.blogTitle}>{ele.title}</Typography>
-                    <Typography variant="subtitle1" color="#fff">
-                        {ele.author}
-                    </Typography>
+                <Box sx={{ background: "rgba(0, 0, 0, 0.5)", height: "100%" }}>
+                    <Box className={styles.textContain}>
+                        <Typography className={styles.blogTitle}>{ele.title}</Typography>
+                        <Typography variant="subtitle1" color="#fff">
+                            {ele.author}
+                        </Typography>
+                    </Box>
                 </Box>
             </Box>
         );
+    };
+
+    const PmSpeaksCard = (ele: any, index: number) => {
+        return <Box key={index} className={styles.blogCard} sx={{ backgroundImage: `url(${ele})` }} />;
     };
 
     const displayFn = (ele: any, index: number) => {
@@ -84,6 +93,8 @@ const CommonComp: React.FC<IProps> = (props) => {
                 return VideosCard(ele, index);
             case "blogs":
                 return BlogCard(ele, index);
+            case "pmspeaks":
+                return PmSpeaksCard(ele, index);
         }
     };
 
@@ -102,6 +113,7 @@ const useStyles = makeStyles({
         width: "80%",
     },
     card: {
+        cursor: "pointer",
         marginLeft: "2rem",
         marginBottom: "0.7rem",
         paddingBlock: "1rem",
@@ -129,7 +141,6 @@ const useStyles = makeStyles({
         width: "fit-content",
     },
     textContain: {
-        background: "rgba(0, 0, 0, 0.5)",
         height: "100%",
         padding: "1rem",
         display: "flex",
@@ -143,11 +154,12 @@ const useStyles = makeStyles({
         fontWeight: "bold !important",
     },
     blogCard: {
+        cursor: "pointer",
         marginLeft: "3rem",
+        marginBottom: "1rem",
         position: "relative",
         minWidth: "18rem",
-        borderRadius: "1rem",
-        height: "10rem",
+        minHeight: "10rem",
         backgroundSize: "100%",
         backgroundRepeat: "no-repeat",
         objectFit: "fill",
